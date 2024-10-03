@@ -1,0 +1,373 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>ASA</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{% static 'vendors/feather/feather.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/css/vendor.bundle.base.css' %}">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <link rel="stylesheet" href="{% static 'vendors/datatables.net-bs4/dataTables.bootstrap4.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'js/select.dataTables.min.css' %}">
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{% static 'css/vertical-layout-light/style.css' %}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{% static 'images/faces/asalowbudget.jpeg' %}" />
+
+    <!-- Other head elements -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<style>
+
+
+  body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+.card-red {
+            background-color: black;
+            color: white; /* Optional: to make the text readable */
+        }
+
+
+.card tale-red {
+            background-color: black;
+            color: white; /* Optional: to make the text readable */
+        }
+
+.background-black {
+          background-color: red;
+          color: white; /* Optional: to make the text readable */
+      }
+
+
+.card-black {
+        background-color: red;
+        color: white; /* Set text color to white */
+    }
+
+    .full-width {
+      width: 100%;
+  }
+
+
+  .nav-item {
+    background-color:  ;
+}
+
+.nav-item .nav-link {
+    color: white; /* Optional: Change the text color to white for better contrast */
+}
+
+
+.full-width {
+  width: 100% !important;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.display {
+  width: 100% !important;
+}
+
+
+.container-fluid.page-body-wrapper {
+  padding-right: 0 !important; /* Ensure no extra padding on the right */
+  margin-right: 0 !important;  /* Ensure no extra margin on the right */
+}
+
+.main-panel {
+  width: 100%; /* Ensure the panel takes full width */
+}
+
+.table-responsive {
+  overflow-x: auto;
+  width: 100%; /* Ensure table is responsive */
+}
+
+.card-black {
+  background-color: red; /* Use a light background if black is not needed */
+  color: white; /* Set text color to black */
+}
+
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  position: relative;
+  padding-left: 20px; /* Adjust padding to make space for the dot */
+}
+
+.nav-dot {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 5px;
+  background-color: white; /* Change color as needed */
+  border-radius: 50%;
+}
+
+</style>
+
+</head> 
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo mr-5" href="{% url 'index' %}">
+          <img src="{% static 'images/faces/asalowbudget.jpeg' %}" class="mr-2" alt="logo" style="width: 100px; height: 100px;"/>
+        </a>
+        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{% static 'images/asalowbudget.svg' %}" alt="logo"/></a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="icon-menu"></span>
+        </button>
+        <ul class="navbar-nav mr-lg-2">
+          <li class="nav-item nav-search d-none d-lg-block">
+            <div class="input-group">
+              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                <span class="input-group-text" id="search">
+                  
+                </span>
+              </div>
+              <input type="text" class="form-control" id="navbar-search-input" placeholder="" aria-label="search" aria-describedby="search">
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item dropdown">
+            
+              <span class="count"></span>
+            </a>
+          </li>
+          
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+              <a class="dropdown-item">
+                <i class="ti-settings text-primary"></i>
+                Settings
+              </a>
+              <a class="dropdown-item">
+                <i class="ti-power-off text-primary"></i>
+                Logout
+              </a>
+            </div>
+          </li>
+          <li class="nav-item nav-settings d-none d-lg-flex">
+            <a class="nav-link" href="#">
+             
+            </a>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="icon-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'index' %}">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item"> 
+            <a class="nav-link" href="{% url 'add_product' %}" onclick="setDashboardBlack()">
+                <i class="icon-grid menu-icon"></i>
+                <span class="menu-title">Add product</span>
+            </a>
+        </li>
+
+
+          <li class="nav-item"> 
+            <a class="nav-link" href="{% url 'product_list' %}" onclick="setDashboardBlack()">
+              <i class="fas fa-boxes menu-icon"></i> 
+                <span class="menu-title">Update product</span>
+            </a>
+        </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'stock_list' %}" onclick="setDashboardBlack()">
+              <i class="fas fa-warehouse menu-icon"></i>
+                <span class="menu-title">Check stock</span>
+            </a>
+        </li>
+        
+  
+
+              <form method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="dropdown-item">
+                  <i class="fas fa-boxes menu-icon"></i> 
+                  Logout
+                </button>
+              </form>
+
+
+
+  
+      </nav>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="row">
+                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                  <h3 class="font-weight-bold">Welcome Admin</h3>
+                  <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span class="text-primary"></span></h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6 grid-margin transparent">
+            <div class="row">
+                <div class="col-md-12 mb-4 stretch-card transparent">
+                    <div class="card card-red">
+                        <div class="card-body">
+                            <p class="mb-4">Number of Products</p>
+                            <p class="fs-30 mb-2">{{ total_products }}</p>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card full-width">
+                <div class="card-body">
+                    <p class="card-title">Recent added product</p>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="table-responsive full-width">
+                                <table id="example" class="display expandable-table full-width" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>#no_</th>
+                                            <th>Product name</th>
+                                            <th>Part number</th>
+                                            <th>Shelf(location)</th>
+                                            <th>Date</th>
+                                            <th>Quantity</th>
+                                            <th>Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for product in recent_products %}
+                                        <tr>
+                                            <td>{{ forloop.counter }}</td>
+                                            <td>{{ product.product_name }}</td>
+                                            <td>{{ product.product_type }}</td>
+                                            <td>{{ product.shelf_location }}</td>
+                                            <td>{{ product.date_entered }}</td>
+                                            <td>{{ product.quantity }}</td>
+                                            <td>{{ product.amount_cost }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card full-width">
+                <div class="card-body">
+                    <p class="card-title">Product Name vs Quantity</p>
+                    <canvas id="productChart" width="400" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+  <!-- container-scroller -->
+
+  <!-- plugins:js -->
+  <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <script src="{% static 'vendors/chart.js/Chart.min.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net/jquery.dataTables.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net-bs4/dataTables.bootstrap4.js' %}"></script>
+  <script src="{% static 'js/dataTables.select.min.js' %}"></script>
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="{% static 'js/off-canvas.js' %}"></script>
+  <script src="{% static 'js/hoverable-collapse.js' %}"></script>
+  <script src="{% static 'js/template.js' %}"></script>
+  <script src="{% static 'js/settings.js' %}"></script>
+  <script src="{% static 'js/todolist.js' %}"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="{% static 'js/dashboard.js' %}"></script>
+  <script src="{% static 'js/Chart.roundedBarCharts.js' %}"></script>
+
+
+
+
+  <script>
+    var ctx = document.getElementById('productChart').getContext('2d');
+    var productChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: {{ product_names|safe }},
+            datasets: [{
+                label: 'Quantity',
+                data: {{ product_quantities|safe }},
+                backgroundColor: 'black',
+                borderColor: 'r',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+  <script>
+    function setDashboardBlack() {
+        document.getElementById('dashboard').classList.add('dashboard-black');
+    }
+</script>
+  <!-- End custom js for this page-->
+</body>
+
+</html>
+
